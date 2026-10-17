@@ -26,6 +26,8 @@ app.post('/webhook', express.raw({ type: 'application/json' }), (req, res) => {
 
 app.use(express.json());
 app.use(express.static('public'));
+// On Vercel, public/ is served by the CDN but "/" still reaches the function
+app.get('/', (req, res) => res.redirect('/index.html'));
 
 // Age-appropriate books first, then the rest of the catalog
 app.get('/api/rewards', (req, res) => {
