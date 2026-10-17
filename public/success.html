@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jar topped up · Bedtime Bounty</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main>
+    <section class="card center">
+      <h1>🫙✨</h1>
+      <p id="msg">Filling the jar…</p>
+      <a href="/" class="primary">Back to the missions</a>
+    </section>
+  </main>
+  <script src="jar.js"></script>
+  <script>
+    const id = new URLSearchParams(location.search).get('session_id');
+    fetch('/api/confirm/' + id).then((r) => r.json()).then((s) => {
+      const msg = document.getElementById('msg');
+      if (s.error || !s.paid) return (msg.textContent = 'We could not confirm this payment yet.');
+      creditJar(loadJar(), s);
+      msg.textContent = s.mode === 'subscription'
+        ? `Monthly allowance active! €${(s.amount / 100).toFixed(2)} added to the jar. Receipt sent to ${s.email}.`
+        : `€${(s.amount / 100).toFixed(2)} added to the jar — time to earn some stars! Receipt sent to ${s.email}.`;
+    });
+  </script>
+</body>
+</html>

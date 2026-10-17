@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bedtime Bounty</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main>
+    <header>
+      <h1>🌙 Bedtime Bounty</h1>
+      <p>Good habits earn stars. Stars earn books.</p>
+      <div class="tabs">
+        <button data-tab="kid" class="tab on">🧒 Kid</button>
+        <button data-tab="parent" class="tab">👩 Parent</button>
+      </div>
+    </header>
+
+    <!-- KID MODE -->
+    <div id="kid">
+      <section class="card jar">
+        <div class="jar-visual"><div id="jarFill" class="jar-fill"></div><span id="starCount">0⭐</span></div>
+        <div class="jar-info">
+          <h2 id="kidName"></h2>
+          <p class="big" id="unlocked">€0.00</p>
+          <p class="muted" id="nextGoal"></p>
+        </div>
+      </section>
+
+      <h3>Today's missions</h3>
+      <section id="missions" class="missions"></section>
+      <p id="toast" class="toast hidden"></p>
+
+      <h3>Reward shelf</h3>
+      <section id="rewards" class="grid"></section>
+
+      <h3 id="shelfTitle" class="hidden">📚 My books</h3>
+      <section id="shelf" class="shelf"></section>
+    </div>
+
+    <!-- PARENT MODE -->
+    <div id="parent" class="hidden">
+      <section class="card">
+        <h3>🫙 The jar</h3>
+        <p>Locked (waiting to be earned): <strong id="locked">€0.00</strong> · Earned: <strong id="unlockedP">€0.00</strong></p>
+        <p class="muted">1⭐ = <span id="rate"></span>. Money stays locked until your toddler earns it.</p>
+        <div class="row">
+          <button class="primary" data-topup="1000">+ €10</button>
+          <button class="primary" data-topup="2000">+ €20</button>
+          <button class="primary" data-topup="5000">+ €50</button>
+        </div>
+        <button id="subscribe" class="secondary">🔁 Monthly allowance — €9.99/mo</button>
+        <p id="allowance" class="muted hidden">✅ Monthly allowance active</p>
+      </section>
+
+      <section class="card">
+        <h3>🧒 Child</h3>
+        <div class="row">
+          <input id="childName" placeholder="Name" />
+          <input id="childAge" type="number" min="0" max="72" placeholder="Age (months)" />
+          <button id="saveChild" class="secondary small">Save</button>
+        </div>
+      </section>
+
+      <section class="card">
+        <h3>➕ New mission</h3>
+        <div class="row">
+          <input id="mEmoji" value="⭐" class="emoji-in" />
+          <input id="mName" placeholder="e.g. Said please & thank you" />
+          <input id="mStars" type="number" value="2" min="1" max="10" class="num" />
+          <button id="addMission" class="secondary small">Add</button>
+        </div>
+      </section>
+
+      <section class="card">
+        <h3>📜 Activity</h3>
+        <ul id="log" class="log"></ul>
+      </section>
+    </div>
+  </main>
+
+  <script src="jar.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

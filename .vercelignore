@@ -1,0 +1,6 @@
+.env
+.env.*
+.projects
+stripe.ps1
+.stripe-docker
+node_modules
